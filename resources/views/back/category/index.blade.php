@@ -16,7 +16,10 @@
       </div>
 
       <div class="mt-3">
+        @if (auth()->user()->role == 1)
         <button class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#modalCreate">Created</button>
+          @endif 
+        
 
         <div class="my-3">
             @if ($errors->any())
@@ -57,7 +60,9 @@
                     <th>Name</th>
                     <th>Slug</th>
                     <th>Create At</th>
-                    <th class="text-center">Function</th>
+                    @if (auth()->user()->role == 1)
+                        <th class="text-center">Function</th>                        
+                    @endif
                 </tr>
             </thead>
 
@@ -68,12 +73,16 @@
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->slug }}</td>
                         <td>{{ $item->created_at }}</td>
+                        @if (auth()->user()->role == 1)
                         <td>
                             <div class="text-center">
+
                                 <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalUpdate{{ $item->id }}">Edit</button>
                                 <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $item->id }}">Delete</button>
+                                
                             </div>
                         </td>
+                        @endif
                     </tr>
                 @endforeach
 

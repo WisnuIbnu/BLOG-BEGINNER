@@ -72,21 +72,49 @@
                 </div>
             </div>
 
+            @if (auth()->user()->role == 1)
             <div class="mb-3">
-                <label for="user_id">Masukan User_id</label>
-                <input type="number" name="user_id" id="user_id" class="form-control" value="{{ old('user_id', $article->user_id) }}">
+                <label for="user_id">Pilih Nama Anda</label>
+                <select name="user_id" id="user_id" class="form-control">
+                       <option value="" hidden>Choose</option>
+                            @foreach ($user as $item )
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                    @endforeach
+                </select>
             </div>
+            @else
+            <div class="mb-3">
+                <label for="user_id">Pilih Nama Anda</label>
+                <select name="user_id" id="user_id" class="form-control">
+                       <option value="" hidden>Choose</option>
+                            <option value="{{ Auth::user()->id }}">{{ Auth::user()->name }}</option>
+                </select>
+            </div>
+            @endif
 
             <div class="row">
+            @if (auth()->user()->role == 1)
                 <div class="col-6">
                     <div class="mb-3">
                         <label for="status">Status</label>
                         <select name="status" id="status" class="form-control">
-                            <option value="0" {{ $article->status == 1 ? 'selected' : null }}>Private</option>
-                            <option value="1" {{ $article->status == 0 ? 'selected' : null }}>Publish</option>
+                            <option value="" hidden>Choose</option>
+                            <option value="0">Private</option>
+                            <option value="1">Publish</option>
                         </select>
                     </div>
                 </div>
+                @else
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label for="status">Status</label>
+                        <select name="status" id="status" class="form-control">
+                            <option value="" hidden>Choose</option>
+                            <option value="0">Private</option>
+                        </select>
+                    </div>
+                </div>
+                @endif
 
                 <div class="col-6">
                     <div class="mb-3">

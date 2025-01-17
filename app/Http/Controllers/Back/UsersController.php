@@ -73,7 +73,7 @@ class UsersController extends Controller
         }
 
 
-        return back()->with('success','User Baru Telah Ditambahkan');
+        return back()->with('success','Data Telah Berhasil Diperbahrui');
     }
     public function destroy(string $id)
     {

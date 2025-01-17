@@ -52,7 +52,7 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         // Redirect ke halaman login
-        return redirect('/login')->with('status', 'You have been logged out successfully!');
+        return redirect('/')->with('status', 'You have been logged out successfully!');
     }
 
     

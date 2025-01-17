@@ -22,22 +22,28 @@
                 <input type="email" name="email" id="email" class="form-control" value="{{ old('name', $item->email) }}">
             </div>
 
+            <div class="mb-3">
+                <label for="password">Password <span class="small">Jika tidak ingin mengubah password harap mengkosongkan isi kolom</span></label>
+                <input type="password" name="password" id="password" class="form-control" value="{{ old('name') }}">
+            </div>
+
             @if (auth()->user()->role == 1)
             <div class="mb-3">
-                <label for="role">Pilih Role</label>
+                <label for="role">Pilih Role<span class="small"> Kolom Ini Harus Pilih</span></label>
                 <select name="role" id="role" class="form-control">
                     <option value="" hidden>Choose Role</option>
                      <option value="1">Admin</option>
                      <option value="2">Penulis</option>
                      <option value="3">Guest</option>
                 </select>
-            </div>
+            @else
+                <label for="role">Pilih Role<span class="small"> Kolom Ini Harus Pilih</span></label>
+                <select name="role" id="role" class="form-control">
+                    <option value="" hidden>Choose Role</option>
+                     <option value="2">Penulis</option>
+                </select>
+              </div>
             @endif
-
-            <div class="mb-3">
-                <label for="password">Password <span class="small">Jika tidak ingin mengubah password harap mengkosongkan isi kolom</span></label>
-                <input type="password" name="password" id="password" class="form-control" value="{{ old('name') }}">
-            </div>
         
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
